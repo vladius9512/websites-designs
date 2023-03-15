@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
@@ -108,4 +109,33 @@
 
 .log-in:hover {
     background-color: rgb(0, 200, 200);
+}
+
+.schedule-container {
+    display: grid;
+    grid-template-columns: 80vw 20vw;
+}
+
+.sidebar-container {
+    position: relative;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #0a0e13;
+    width: 100%;
+}
+
+.league-parent {
+    color: #8fa3b0;
+}
+
+.league-name {
+    color: #ffffff;
+}
+
+.grid-league {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
 }
