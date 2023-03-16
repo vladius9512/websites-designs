@@ -12,6 +12,7 @@
     background-color: #111111;
     color: #f9f9f9;
     align-items: center;
+    border-bottom: 1px solid #191919;
 }
 
 .menu-container-right {
@@ -126,16 +127,50 @@
     width: 100%;
 }
 
+.sidebar-header {
+    color: #8497a3;
+    padding: 30px 10px 10px 25px;
+    border-bottom: 1px solid #252c32;
+    font-weight: 600;
+    background-color: #0a0e13;
+}
+
 .league-parent {
     color: #8fa3b0;
 }
 
-.league-name {
+.active .league-name {
     color: #ffffff;
+}
+
+.grid-league.active {
+    border-left: 4px solid #00c8c8;
+}
+
+.grid-league.active img {
+    opacity: 1;
+}
+
+.league-name {
+    color: #7c8d99;
+}
+
+.grid-league img {
+    opacity: 0.3;
 }
 
 .grid-league {
     display: flex;
     gap: 10px;
-    padding: 10px;
+    padding: 10px 10px 10px 25px;
+    align-items: center;
+    border-bottom: 1px solid #252c32;
+}
+
+.grid-league:hover {
+    cursor: pointer;
+}
+
+.grid-league:hover img {
+    opacity: 1;
 }
