@@ -115,17 +115,22 @@
 .schedule-container {
     display: grid;
     grid-template-columns: 80vw 20vw;
+    padding-top: 92px;
 }
 
 .sidebar-container {
     position: relative;
 }
 
-.sidebar {
+.sidebar-fixed {
     position: fixed;
+    height: calc(100% - 92px);
+}
+
+.sidebar {
     background-color: #0a0e13;
     width: 100%;
-    height: calc(100% - 150px);
+    height: calc(100vh - 150px);
     overflow-y: auto;
 }
 
@@ -250,4 +255,10 @@
 .type-of-game {
     color: #8fa3b0;
     text-align: right;
+}
+
+.menu-fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
