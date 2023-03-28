@@ -185,8 +185,8 @@
 .events {
     background-color: #0f1519;
     color: #ffffff;
-    height: calc(100%-3800px);
-    overflow-y: auto;
+    height: calc(100vh - 92px);
+    overflow-y: scroll;
 }
 
 .grid-matches {
@@ -261,4 +261,11 @@
     position: fixed;
     width: 100%;
     z-index: 1;
+}
+
+.team-img img {
+    width: 70px;
+    height: 70px;
+    margin: 16px 0;
+    box-sizing: content-box;
 }
