@@ -112,21 +112,44 @@ class LinkedList {
         }
         return (stringList += "null");
     }
-}
 
-class Node {
-    constructor(value = null) {
-        this.value = value;
-        this.nextNode = null;
+    removeAt(index) {
+        let currentNode = this.head;
+        let lastNode;
+        let currentIndex = 0;
+        if (index < 0 || index > this.size()) {
+            console.log("Enter a valid index");
+            return;
+        }
+        while (currentNode && index !== currentIndex) {
+            lastNode = currentNode;
+            currentNode = currentNode.nextNode;
+            currentIndex++;
+        }
+        if (lastNode && currentIndex === index) {
+            lastNode.nextNode = currentNode.nextNode;
+        }
+        return this.head;
+    }
+
+    insertAt(value, index) {
+        let currentNode = this.head;
+        let currentIndex = 0;
+        while (currentNode) {
+            if (index === currentIndex) {
+                currentNode.nextNode = new Node(value, currentNode.nextNode);
+                currentNode = null;
+            } else {
+                currentNode = currentNode.nextNode;
+                currentIndex++;
+            }
+        }
     }
 }
 
-let node1 = new Node(3);
-let node2 = new Node(5);
-let node3 = new Node(6);
-node1.nextNode = node2;
-node2.nextNode = node3;
-let list = new LinkedList(node1);
-list.append(23);
-list.prepend(1);
-console.log(JSON.stringify(list.toString()));
+class Node {
+    constructor(value = null, nextNode = null) {
+        this.value = value;
+        this.nextNode = nextNode;
+    }
+}
