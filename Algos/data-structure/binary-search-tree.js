@@ -38,6 +38,56 @@ class Tree {
         }
         return root;
     }
+
+    findMinNode(node) {
+        if (node.left === null) {
+            return node;
+        } else return this.findMinNode(node.left);
+    }
+
+    remove(value) {
+        this.root = this.removeNode(this.root, value);
+    }
+
+    removeNode(value, node) {
+        if (node === null) return null;
+        else if (value < node.value) {
+            node.left = this.removeNode(value, node.left);
+            return node;
+        } else if (value > node.value) {
+            node.right = this.removeNode(value, node.right);
+            return node;
+        } else {
+            if (node.left === null && node.right === null) {
+                node = null;
+                return node;
+            }
+            if (node.left === null) {
+                node = node.right;
+                return node;
+            } else if (node.right === null) {
+                node = node.left;
+                return node;
+            }
+
+            let aux = this.findMinNode(node.right);
+            node.value = aux.value;
+
+            node.right = this.removeNode(node.value, node.right);
+            return node;
+        }
+    }
+
+    find(value, root = this.root) {
+        if (root === null) return null;
+        if (value < root.value) {
+            return this.find(value, root.left);
+        } else if (value > root.value) {
+            return this.find(value, root.right);
+        } else {
+            return root;
+        }
+    }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -55,4 +105,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 let binaryTree = new Tree([1, 5, 10, 17, 25]);
 binaryTree.insert(6, binaryTree.root);
+binaryTree.removeNode(5, binaryTree.root);
+binaryTree.find(1, binaryTree.root);
 prettyPrint(binaryTree.root);
