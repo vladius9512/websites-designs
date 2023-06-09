@@ -7,7 +7,7 @@ class App extends Component {
         super();
 
         this.state = {
-            task: { text: "", id: uniqid(), number: 1 },
+            task: { text: "", id: uniqid() },
             tasks: [],
         };
     }
@@ -16,15 +16,18 @@ class App extends Component {
             task: {
                 text: e.target.value,
                 id: this.state.task.id,
-                number: this.state.task.number,
             },
         });
     };
     handleRemove = (id) => {
         const newList = this.state.tasks.filter((item) => item.id !== id);
+        console.log(newList);
         this.setState({
             tasks: newList,
         });
+    };
+    handleEdit = (id) => {
+        console.log("a");
     };
     onSubmitTask = (e) => {
         e.preventDefault();
@@ -34,7 +37,6 @@ class App extends Component {
             task: {
                 text: "",
                 id: uniqid(),
-                number: this.state.task.number + 1,
             },
         });
     };
@@ -53,7 +55,11 @@ class App extends Component {
                     ></input>
                     <button type="submit">Add Task</button>
                 </form>
-                <Overview tasks={tasks} handleRemove={this.handleRemove} />
+                <Overview
+                    tasks={tasks}
+                    handleRemove={this.handleRemove}
+                    handleEdit={this.handleEdit}
+                />
             </div>
         );
     }

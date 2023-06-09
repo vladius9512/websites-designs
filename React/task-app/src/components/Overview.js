@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Overview = (props) => {
-    const { tasks, handleRemove } = props;
+    const { tasks, handleRemove, handleEdit } = props;
 
     return (
         <ul>
-            {tasks.map((task) => {
+            {tasks.map((task, iterator) => {
                 return (
                     <li key={task.id}>
-                        {`${task.number}. ${task.text}`}
+                        {`${iterator + 1}. ${task.text}`}
                         <button
                             type="button"
                             onClick={() => handleRemove(task.id)}
