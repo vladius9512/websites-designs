@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import Overview from "./components/Overview";
+import EditModal from "./components/EditModal";
 
 class App extends Component {
     constructor() {
@@ -9,6 +10,7 @@ class App extends Component {
         this.state = {
             task: { text: "", id: uniqid() },
             tasks: [],
+            editModal: { visible: false, taskId: null },
         };
     }
     handleChange = (e) => {
@@ -26,8 +28,25 @@ class App extends Component {
             tasks: newList,
         });
     };
-    handleEdit = (id) => {
-        console.log("a");
+    handleEditSubmit = (inputValue, id) => {
+        const newList = this.state.tasks.map((item) => {
+            if (item.id === id) {
+                item.text = inputValue;
+            }
+            return item;
+        });
+        this.setState({
+            tasks: newList,
+            editModal: { visible: false, taskId: null },
+        });
+    };
+    openEditModal = (id) => {
+        this.setState({
+            editModal: {
+                visible: true,
+                taskId: id,
+            },
+        });
     };
     onSubmitTask = (e) => {
         e.preventDefault();
@@ -58,8 +77,14 @@ class App extends Component {
                 <Overview
                     tasks={tasks}
                     handleRemove={this.handleRemove}
-                    handleEdit={this.handleEdit}
+                    handleEdit={this.openEditModal}
                 />
+                {this.state.editModal.visible && (
+                    <EditModal
+                        handleEditSubmit={this.handleEditSubmit}
+                        taskId={this.state.editModal.taskId}
+                    />
+                )}
             </div>
         );
     }

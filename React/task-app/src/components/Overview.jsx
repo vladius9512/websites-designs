@@ -11,6 +11,12 @@ const Overview = (props) => {
                         {`${iterator + 1}. ${task.text}`}
                         <button
                             type="button"
+                            onClick={() => handleEdit(task.id)}
+                        >
+                            Edit
+                        </button>
+                        <button
+                            type="button"
                             onClick={() => handleRemove(task.id)}
                             key={task.id}
                         >
